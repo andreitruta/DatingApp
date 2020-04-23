@@ -20,6 +20,7 @@ using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Diagnostics;
 using DatingApp.API.Helpers;
+using AutoMapper;
 
 namespace DatingApp.API
 {
@@ -36,11 +37,18 @@ namespace DatingApp.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllers();
+
+            //             Newtonsoft.Json.JsonConvert.DefaultSettings = () => new Newtonsoft.Json.JsonSerializerSettings {
+            //     ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            // };
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddCors();
+            services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IDatingRepository, DatingRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(option => {
+                .AddJwtBearer(option =>
+                {
                     option.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
@@ -50,6 +58,7 @@ namespace DatingApp.API
                         ValidateAudience = false
                     };
                 });
+
             // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // services.AddMvc(option => option.EnableEndpointRouting = false).AddNewtonsoftJson();
         }
@@ -65,21 +74,21 @@ namespace DatingApp.API
             {
                 app.UseExceptionHandler(builder =>
                 {
-                    builder.Run(async context => 
+                    builder.Run(async context =>
                     {
 
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
                         var error = context.Features.Get<IExceptionHandlerFeature>();
-                        if(error != null)
+                        if (error != null)
                         {
                             context.Response.AddApplicationError(error.Error.Message);
                             await context.Response.WriteAsync(error.Error.Message);
                         }
-                     });
+                    });
                 });
             }
-        
+
 
             // app.UseHttpsRedirection();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
