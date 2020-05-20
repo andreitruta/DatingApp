@@ -62,6 +62,7 @@ namespace DatingApp.API
 
             // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // services.AddMvc(option => option.EnableEndpointRouting = false).AddNewtonsoftJson();
+            services.AddScoped<LogUserActivity>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
