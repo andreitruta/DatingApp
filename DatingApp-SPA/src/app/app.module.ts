@@ -6,15 +6,19 @@ import {
 import { NgModule, Injectable, Pipe } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
+// import { BsDropdownModule, TabsModule, PaginationModule } from 'ngx-bootstrap';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+// import { PaginationModule } from 'ng2-bootstrap/pagination';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { NgxGalleryModule } from 'ngx-gallery';
-import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { NgxGalleryModule } from 'ngx-gallery-9';
+// import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
-import {TimeAgoPipe} from 'time-ago-pipe';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -53,7 +57,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
 // tslint:disable-next-line: use-pipe-transform-interface
 @Pipe({
   name: 'timeAgo',
-  pure: false
+  pure: false,
 })
 export class TimeAgoExtendsPipe extends TimeAgoPipe {}
 
@@ -70,7 +74,7 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe {}
     MemberDetailComponent,
     MemberEditComponent,
     TimeAgoExtendsPipe,
-    PhotoEditorComponent
+    PhotoEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +82,7 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe {}
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    PaginationModule.forRoot(),
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
