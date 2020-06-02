@@ -22,7 +22,6 @@ namespace DatingApp.API.Controllers
         {
             _mapper = mapper;
             _repo = repo;
-
         }
 
         [HttpGet]
@@ -61,5 +60,6 @@ namespace DatingApp.API.Controllers
 
             throw new System.Exception($"Updating user {id} failed on save!");
         }
+
     }
 }

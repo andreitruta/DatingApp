@@ -3,14 +3,16 @@ using System;
 using DatingApp.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DatingApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200601160303_AddedLockerEntity")]
+    partial class AddedLockerEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,29 +45,6 @@ namespace DatingApp.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Lockers");
-                });
-
-            modelBuilder.Entity("DatingApp.API.Models.LockerHistory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LockerCheckIn")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("LockerCheckOut")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("LockerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("LockerUserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LockersHistory");
                 });
 
             modelBuilder.Entity("DatingApp.API.Models.Photo", b =>

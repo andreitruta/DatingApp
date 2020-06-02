@@ -24,6 +24,7 @@ export class MemberListComponent implements OnInit {
     this.route.data.subscribe((data) => {
       // tslint:disable-next-line: no-string-literal
       this.users = data['users'].result;
+      // tslint:disable-next-line: no-string-literal
       this.paginationn = data['users'].paginationn;
     });
   }
