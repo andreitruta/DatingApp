@@ -24,6 +24,12 @@ namespace DatingApp.API.Data
             _context.Remove(entity);
         }
 
+        public async Task<IEnumerable<Locker>> GetLockers()
+        {
+            var lockers = await _context.Lockers.ToListAsync();
+            return lockers;
+        }
+
         public async Task<Photo> GetMainPhotoForUser(int userId)
         {
             return await _context.Photos.Where(u => u.UserId == userId).FirstOrDefaultAsync(p => p.IsMain);

@@ -133,7 +133,7 @@ namespace DatingApp.API.Data
                     bufferOfAvailableLockers[index - 1] = 0;
                 }
 
-                if (lockers.ElementAt(index-1).LockerBusy == true)
+                if (lockers.ElementAt(index - 1).LockerBusy == true)
                 {
                     bufferOfBusyLockers[index - 1] = 1;
                 }
@@ -249,6 +249,41 @@ namespace DatingApp.API.Data
             var lockers = await _context.Lockers.ToListAsync();
 
             return lockers;
+        }
+
+        public async Task<bool> CheckOut(User user)
+        {
+            var userId = user.Id;
+
+            var lockerForCheckout = _context.Lockers.FirstOrDefaultAsync(locker => locker.LockerUserId == userId);
+
+            if (lockerForCheckout == null) //not update on NULL
+            {
+                return true;
+            }
+            else
+            {
+                lockerForCheckout.Result.LockerUserId = 0; //set to default
+                lockerForCheckout.Result.LockerVacant = true;
+                lockerForCheckout.Result.LockerBusy = false;
+                lockerForCheckout.Result.LockerCheckOut = DateTime.Now;
+                var lockerForHistory = new LockerHistory();
+                lockerForHistory.LockerCheckIn = lockerForCheckout.Result.LockerCheckIn;
+                lockerForHistory.LockerCheckOut = lockerForCheckout.Result.LockerCheckOut;
+                lockerForHistory.LockerUserId = userId;
+                lockerForHistory.LockerUsername = user.Username;
+                lockerForCheckout.Result.LockerCheckIn = new DateTime(2000, 01, 1);
+
+                /* function for adding lockers to the DB  */
+                await _context.LockersHistory.AddAsync(lockerForHistory);
+                /* greater than 0 = number of changes returns true
+                *  == 0 noting saved and returns false */
+                return await _context.SaveChangesAsync() > 0;
+            }
+
+
+
+
         }
     }
 }

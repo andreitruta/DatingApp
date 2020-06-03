@@ -41,6 +41,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { LockerCardComponent } from './locker-card/locker-card/locker-card.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -75,6 +76,7 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe {}
     MemberEditComponent,
     TimeAgoExtendsPipe,
     PhotoEditorComponent,
+    LockerCardComponent
   ],
   imports: [
     BrowserModule,

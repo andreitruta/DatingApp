@@ -29,6 +29,6 @@ namespace DatingApp.API.Models
         */
         public DateTime LockerCheckOut { get; set; }
 
-
+        public string LockerUsername { get; set; }
     }
 }

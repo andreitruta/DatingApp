@@ -28,6 +28,15 @@ namespace DatingApp.API.Controllers
             _repo = repo;
         }
 
+        [HttpPost]
+        public IActionResult CheckOut(User userId)
+        {
+            Console.WriteLine("PULA" + userId);
+            // await _repo.CheckOut(user);
+            return NoContent();
+
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {

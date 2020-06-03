@@ -12,5 +12,6 @@ namespace DatingApp.API.Data
         Task<bool> UserExists(string username);
         void Add<T>(T entity) where T : class;
         Task<IEnumerable<Locker>> GetLockers();
+        Task<bool> CheckOut(User user);
     }
 }

@@ -1,3 +1,7 @@
-<p>
-  lists works!
-</p>
+<div class="container mt-5">
+  <div class="row">
+    <div *ngFor="let locker of lockers" class="col-lg-2 col-md-3 col-sm-6 ">
+      <app-locker-card [locker]="locker"></app-locker-card>
+    </div>
+  </div>
+</div>

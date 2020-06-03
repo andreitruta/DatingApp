@@ -6,6 +6,7 @@ import { User } from '../_models/user';
 import { NgxGalleryThumbnailsComponent } from '@kolkov/ngx-gallery';
 import { PaginatedResult } from '../_models/Pagination';
 import { map } from 'rxjs/operators';
+import { Locker } from '../_models/locker';
 
 // const httpOptions = {
 //   headers: new HttpHeaders({
@@ -20,6 +21,10 @@ export class UserService {
   baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
+
+  getLockers(): Observable<Locker[]> {
+    return this.http.get<Locker[]>(this.baseUrl + 'lockers');
+  }
 
   getUsers(page?, itemsPerPage?): Observable<PaginatedResult<User[]>> {
     const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<

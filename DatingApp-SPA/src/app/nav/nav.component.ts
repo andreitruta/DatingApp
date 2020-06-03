@@ -3,6 +3,7 @@ import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Router } from '@angular/router';
 import { PhotoEditorComponent } from '../members/photo-editor/photo-editor.component';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-nav',
@@ -20,7 +21,9 @@ export class NavComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+    this.authService.currentPhotoUrl.subscribe(
+      (photoUrl) => (this.photoUrl = photoUrl)
+    );
   }
 
   login() {
@@ -42,6 +45,9 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
+    const user: User = JSON.parse(localStorage.getItem('user'));
+    console.log(localStorage.getItem('user') + 'USER');
+    this.authService.checkout(user);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.authService.decodedToken = null;
