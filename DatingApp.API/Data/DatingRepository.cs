@@ -30,6 +30,12 @@ namespace DatingApp.API.Data
             return lockers;
         }
 
+        public async Task<IEnumerable<LockerHistory>> GetLockersHistory()
+        {
+            var lockershistory = await _context.LockersHistory.ToListAsync();
+            return lockershistory;
+        }
+
         public async Task<Photo> GetMainPhotoForUser(int userId)
         {
             return await _context.Photos.Where(u => u.UserId == userId).FirstOrDefaultAsync(p => p.IsMain);

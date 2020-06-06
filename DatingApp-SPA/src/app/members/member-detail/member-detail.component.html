@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <div class="row">
+  <div class="row ml-1">
     <h1>{{ user.knownAs }}'s Profile</h1>
   </div>
   <div class="row">
@@ -12,8 +12,12 @@
         />
         <div class="card-body">
           <div>
-            <strong>Location:</strong>
+            <strong>Gym membership, gym facilities:</strong>
             <p>{{ user?.city }}, {{ user?.country }}</p>
+          </div>
+          <div>
+            <strong>Gender:</strong>
+            <p>{{ user?.gender }}</p>
           </div>
           <div>
             <strong>Age:</strong>
@@ -25,13 +29,13 @@
           </div>
           <div>
             <strong>Member since:</strong>
-            <p>{{ user?.created | date: 'mediumDate'}}</p>
+            <p>{{ user?.created | date: "mediumDate" }}</p>
           </div>
         </div>
         <div class="card-footer">
           <div class="btn-group d-flex">
-            <button class="btn btn-primary w-100">Like</button>
-            <button class="btn btn-success w-100">Message</button>
+            <!-- <button class="btn btn-primary w-100">Like</button>
+            <button class="btn btn-success w-100">Message</button> -->
           </div>
         </div>
       </div>
@@ -39,14 +43,14 @@
     <div class="col-sm-8">
       <div class="tab-pannel">
         <tabset class="member-tabset">
-          <tab heading="About {{ user?.knownAs }}">
-            <h4>Description</h4>
+          <tab heading="Address">
+            <h4>Address:</h4>
             <p>{{ user?.introduction }}</p>
-            <h4>Looking for</h4>
+            <h4>City, county:</h4>
             <p>{{ user?.lookingFor }}</p>
           </tab>
-          <tab heading="Interests">
-            <h4>Interests</h4>
+          <tab heading="Contact">
+            <h4>Contact</h4>
             <p>{{ user?.interests }}</p>
           </tab>
           <tab heading="Photos" style="background-color: rgb(255, 255, 255);">
@@ -55,9 +59,9 @@
               [images]="galleryImages"
             ></ngx-gallery>
           </tab>
-          <tab heading="Messages">
+          <!-- <tab heading="Messages">
             <p>Messages here</p>
-          </tab>
+          </tab> -->
         </tabset>
       </div>
     </div>

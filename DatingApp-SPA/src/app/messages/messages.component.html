@@ -1,3 +1,40 @@
-<p>
-  messages works!
-</p>
+<div class="container">
+  <div *ngFor="let lockerH of lockersHistory" class="row">
+    <li class="list-group-item mt-1">
+      <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">
+          Locker id:
+          <div class="cardbold text-muted text-left font-weight=bold">
+            {{ lockerH.id }} 
+          </div>
+        </li>
+        <li class="list-group-item">
+          Check in:
+          <div class="card-text text-muted text-left text-bold">
+            {{ lockerH.lockerCheckIn | date: "HH:mm:ss, dd/MM/yyyy" }}
+          </div>
+        </li>
+        <li class="list-group-item">
+          Check out:
+          <div class="card-text text-muted text-left">
+            {{ lockerH.lockerCheckOut | date: "HH:mm:ss, dd/MM/yyyy" }}
+          </div>
+        </li>
+        <li class="list-group-item">
+          User id:
+          <div class="card-text text-muted text-left">
+            {{ lockerH.lockerUserId }}
+          </div>
+        </li>
+        <li class="list-group-item">
+          Gym member name:
+          <div class="card-text text-muted text-left">
+            {{ lockerH.lockerUsername.toUpperCase() }}
+          </div>
+        </li>
+      </ul>
+    </li>
+  </div>
+</div>
+
+<!-- <app-locker-card [locker]="locker"></app-locker-card> -->

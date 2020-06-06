@@ -28,11 +28,11 @@ namespace DatingApp.API.Controllers
             _repo = repo;
         }
 
-        [HttpPost]
-        public IActionResult CheckOut(User userId)
+        [HttpPost("checkout")]
+        public async Task<IActionResult> CheckOutAsync(User user)
         {
-            Console.WriteLine("PULA" + userId);
-            // await _repo.CheckOut(user);
+
+            await _repo.CheckOut(user);
             return NoContent();
 
         }

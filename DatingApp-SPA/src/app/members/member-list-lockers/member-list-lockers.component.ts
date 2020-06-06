@@ -18,6 +18,7 @@ export class MemberListLockersComponent implements OnInit {
 
   ngOnInit() {
     this.loadLockers();
+    console.log("DDD")
   }
 
   loadLockers() {

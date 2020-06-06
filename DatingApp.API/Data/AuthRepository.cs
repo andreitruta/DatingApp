@@ -263,11 +263,13 @@ namespace DatingApp.API.Data
             }
             else
             {
+                var lockerForHistory = new LockerHistory();
+
+                lockerForHistory.LockerId = lockerForCheckout.Result.LockerId;
                 lockerForCheckout.Result.LockerUserId = 0; //set to default
                 lockerForCheckout.Result.LockerVacant = true;
                 lockerForCheckout.Result.LockerBusy = false;
                 lockerForCheckout.Result.LockerCheckOut = DateTime.Now;
-                var lockerForHistory = new LockerHistory();
                 lockerForHistory.LockerCheckIn = lockerForCheckout.Result.LockerCheckIn;
                 lockerForHistory.LockerCheckOut = lockerForCheckout.Result.LockerCheckOut;
                 lockerForHistory.LockerUserId = userId;

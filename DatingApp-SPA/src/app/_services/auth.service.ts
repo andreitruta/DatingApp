@@ -48,6 +48,6 @@ export class AuthService {
   }
 
   checkout(user: User) {
-    return this.http.post('http://localhost:5000/api/auth', {});
+    return this.http.post(this.baseUrl + 'checkout', user);
   }
 }

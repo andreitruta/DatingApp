@@ -23,5 +23,12 @@ namespace DatingApp.API.Controllers
             return Ok(lockers);
         }
 
+        [HttpGet("history")]
+        public async Task<IActionResult> GetLockersHistory()
+        {
+            var lockershistory = await _repo.GetLockersHistory();
+            return Ok(lockershistory);
+        }
+
     }
 }

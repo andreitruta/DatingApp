@@ -7,6 +7,7 @@ import { NgxGalleryThumbnailsComponent } from '@kolkov/ngx-gallery';
 import { PaginatedResult } from '../_models/Pagination';
 import { map } from 'rxjs/operators';
 import { Locker } from '../_models/locker';
+import { LockerHistory } from '../_models/lockerhistory';
 
 // const httpOptions = {
 //   headers: new HttpHeaders({
@@ -24,6 +25,10 @@ export class UserService {
 
   getLockers(): Observable<Locker[]> {
     return this.http.get<Locker[]>(this.baseUrl + 'lockers');
+  }
+
+  getLockersHistory(): Observable<LockerHistory[]> {
+    return this.http.get<LockerHistory[]>(this.baseUrl + 'lockers/history');
   }
 
   getUsers(page?, itemsPerPage?): Observable<PaginatedResult<User[]>> {
