@@ -3,9 +3,15 @@
     <li class="list-group-item mt-1">
       <ul class="list-group list-group-horizontal">
         <li class="list-group-item">
+          Entry nr:
+          <div class="card-text text-muted text-left">
+            {{ lockerH.id }} 
+          </div>
+        </li>
+        <li class="list-group-item">
           Locker id:
           <div class="cardbold text-muted text-left font-weight=bold">
-            {{ lockerH.id }} 
+            {{ lockerH.lockerId }} 
           </div>
         </li>
         <li class="list-group-item">
@@ -22,7 +28,7 @@
         </li>
         <li class="list-group-item">
           User id:
-          <div class="card-text text-muted text-left">
+          <div class="cardbold text-muted text-left font-weight=bold">
             {{ lockerH.lockerUserId }}
           </div>
         </li>

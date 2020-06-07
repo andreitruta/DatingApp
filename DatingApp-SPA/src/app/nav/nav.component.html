@@ -11,7 +11,7 @@
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/messages']"
-          >Check in/out history</a
+          >Checkin/Checkout history</a
         >
       </li>
     </ul>
@@ -21,7 +21,7 @@
         <img src="{{ photoUrl || '../../../../assets/user.png' }}" alt="" />
       </span>
       <a class="dropdown-toggle text-light" dropdownToggle>
-        Welcome {{ authService.decodedToken?.unique_name | titlecase }}
+        Welcome {{ authService.decodedToken?.unique_name | titlecase }}, id: {{ authService.currentUser?.id  }}
       </a>
 
       <div class="dropdown-menu mt-3" *dropdownMenu>
